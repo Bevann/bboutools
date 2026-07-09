@@ -20,3 +20,5 @@
 ^CLAUDE\.md$
 ^\.claude$
 ^test-data$
+^[.]?air[.]toml$
+^\.vscode$

@@ -99,7 +99,9 @@ xname <- function(x, col) {
       years = paste(.data$CaribouYear, collapse = ", "),
       .by = "PopulationName"
     ) |>
-    dplyr::mutate(part = paste0(.data$PopulationName, " (", .data$years, ")")) |>
+    dplyr::mutate(
+      part = paste0(.data$PopulationName, " (", .data$years, ")")
+    ) |>
     dplyr::pull("part")
 
   message(
@@ -135,28 +137,40 @@ xname <- function(x, col) {
 
   details <- character(0)
   if (length(pops_sur_only)) {
-    details <- c(details, paste0(
-      "Populations in survival only: ",
-      paste(pops_sur_only, collapse = ", ")
-    ))
+    details <- c(
+      details,
+      paste0(
+        "Populations in survival only: ",
+        paste(pops_sur_only, collapse = ", ")
+      )
+    )
   }
   if (length(pops_rec_only)) {
-    details <- c(details, paste0(
-      "Populations in recruitment only: ",
-      paste(pops_rec_only, collapse = ", ")
-    ))
+    details <- c(
+      details,
+      paste0(
+        "Populations in recruitment only: ",
+        paste(pops_rec_only, collapse = ", ")
+      )
+    )
   }
   if (length(years_sur_only)) {
-    details <- c(details, paste0(
-      "CaribouYears in survival only: ",
-      paste(years_sur_only, collapse = ", ")
-    ))
+    details <- c(
+      details,
+      paste0(
+        "CaribouYears in survival only: ",
+        paste(years_sur_only, collapse = ", ")
+      )
+    )
   }
   if (length(years_rec_only)) {
-    details <- c(details, paste0(
-      "CaribouYears in recruitment only: ",
-      paste(years_rec_only, collapse = ", ")
-    ))
+    details <- c(
+      details,
+      paste0(
+        "CaribouYears in recruitment only: ",
+        paste(years_rec_only, collapse = ", ")
+      )
+    )
   }
   message(
     "Filtering to shared population and year combinations. ",

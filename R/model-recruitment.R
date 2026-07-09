@@ -23,8 +23,15 @@ model_data_recruitment <- function(
   quiet
 ) {
   if (allow_missing) {
-    measurement_cols <- c("Cows", "Bulls", "UnknownAdults", "Yearlings", "Calves")
-    placeholder <- rowSums(is.na(data[measurement_cols])) == length(measurement_cols)
+    measurement_cols <- c(
+      "Cows",
+      "Bulls",
+      "UnknownAdults",
+      "Yearlings",
+      "Calves"
+    )
+    placeholder <- rowSums(is.na(data[measurement_cols])) ==
+      length(measurement_cols)
     population_names <- unique(data$PopulationName)
     if (any(placeholder)) {
       unobserved_years <- caribou_year(
@@ -43,7 +50,10 @@ model_data_recruitment <- function(
   if (allow_missing && nrow(data) == 0L) {
     all_years <- sort(unique(as.character(unobserved_years)))
     data <- data.frame(
-      PopulationName = factor(character(), levels = as.character(population_names)),
+      PopulationName = factor(
+        character(),
+        levels = as.character(population_names)
+      ),
       Annual = factor(character(), levels = all_years),
       CaribouYear = integer(),
       Cows = integer(),

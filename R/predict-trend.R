@@ -36,7 +36,10 @@ predict_trend <- function(fit, derived_expr) {
 #' }
 #' @export
 #' @family analysis
-bb_predict_recruitment_trend_samples <- function(recruitment, sex_ratio = deprecated()) {
+bb_predict_recruitment_trend_samples <- function(
+  recruitment,
+  sex_ratio = deprecated()
+) {
   chkor_vld(.vld_fit(recruitment), .vld_fit_ml(recruitment))
   chk_s3_class(recruitment, "bboufit_recruitment")
   .chk_year_trend(recruitment)

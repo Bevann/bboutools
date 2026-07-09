@@ -33,15 +33,38 @@ test_that("higher anthro gives lower survival b0_mu", {
 
 test_that("annual = TRUE returns lower survival b0_mu than monthly", {
   monthly <- bb_priors_survival_national(anthro = 1, fire_excl_anthro = 1)
-  annual <- bb_priors_survival_national(anthro = 1, fire_excl_anthro = 1, annual = TRUE)
+  annual <- bb_priors_survival_national(
+    anthro = 1,
+    fire_excl_anthro = 1,
+    annual = TRUE
+  )
   expect_gt(monthly["b0_mu"], annual["b0_mu"])
 })
 
 test_that("validates disturbance inputs", {
-  expect_chk_error(bb_priors_survival_national(anthro = -1, fire_excl_anthro = 5))
-  expect_chk_error(bb_priors_survival_national(anthro = 101, fire_excl_anthro = 5))
-  expect_chk_error(bb_priors_survival_national(anthro = "a", fire_excl_anthro = 5))
-  expect_chk_error(bb_priors_survival_national(anthro = 60, fire_excl_anthro = 50))
-  expect_chk_error(bb_priors_recruitment_national(anthro = 50, fire_excl_anthro = -1))
-  expect_chk_error(bb_priors_survival_national(anthro = 50, fire_excl_anthro = 5, annual = NA))
+  expect_chk_error(bb_priors_survival_national(
+    anthro = -1,
+    fire_excl_anthro = 5
+  ))
+  expect_chk_error(bb_priors_survival_national(
+    anthro = 101,
+    fire_excl_anthro = 5
+  ))
+  expect_chk_error(bb_priors_survival_national(
+    anthro = "a",
+    fire_excl_anthro = 5
+  ))
+  expect_chk_error(bb_priors_survival_national(
+    anthro = 60,
+    fire_excl_anthro = 50
+  ))
+  expect_chk_error(bb_priors_recruitment_national(
+    anthro = 50,
+    fire_excl_anthro = -1
+  ))
+  expect_chk_error(bb_priors_survival_national(
+    anthro = 50,
+    fire_excl_anthro = 5,
+    annual = NA
+  ))
 })

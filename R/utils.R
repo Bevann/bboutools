@@ -112,7 +112,9 @@ year_intercept <- function(x) {
     dplyr::filter(.data$any_morts)
 
   if (nrow(y) == 0) {
-    cli::cli_warn("All years have 0 mortalities. Estimation of confidence intervals may not be reliable.")
+    cli::cli_warn(
+      "All years have 0 mortalities. Estimation of confidence intervals may not be reliable."
+    )
     return(min(x$CaribouYear))
   }
 

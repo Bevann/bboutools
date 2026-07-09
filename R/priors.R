@@ -145,7 +145,11 @@ bb_priors_recruitment <- function() {
 #'
 #' # Pass to bb_fit_survival via priors argument
 #' # fit <- bb_fit_survival(data, priors = nat_s)
-bb_priors_survival_national <- function(anthro, fire_excl_anthro, annual = FALSE) {
+bb_priors_survival_national <- function(
+  anthro,
+  fire_excl_anthro,
+  annual = FALSE
+) {
   .chk_disturbance(anthro, fire_excl_anthro)
   chk_flag(annual)
   result <- bbouNationalPriors::bbouNationalPriors(

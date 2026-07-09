@@ -40,7 +40,9 @@ remove_sum0 <- function(
   rows <- nrow(x) - nrow(x2)
   if (rows > 0 && !quiet) {
     cols_str <- chk::cc(cols, " and ")
-    cli::cli_inform("Removed {rows} row{?s} where columns {.field {cols_str}} sum to 0.")
+    cli::cli_inform(
+      "Removed {rows} row{?s} where columns {.field {cols_str}} sum to 0."
+    )
   }
   x2
 }
