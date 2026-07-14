@@ -24,8 +24,13 @@ model_data_survival <- function(
   quiet
 ) {
   if (allow_missing) {
-    measurement_cols <- c("StartTotal", "MortalitiesCertain", "MortalitiesUncertain")
-    placeholder <- rowSums(is.na(data[measurement_cols])) == length(measurement_cols)
+    measurement_cols <- c(
+      "StartTotal",
+      "MortalitiesCertain",
+      "MortalitiesUncertain"
+    )
+    placeholder <- rowSums(is.na(data[measurement_cols])) ==
+      length(measurement_cols)
     population_names <- unique(data$PopulationName)
     if (any(placeholder)) {
       unobserved_years <- caribou_year(
@@ -44,7 +49,10 @@ model_data_survival <- function(
   if (allow_missing && nrow(data) == 0L) {
     all_years <- sort(unique(as.character(unobserved_years)))
     data <- data.frame(
-      PopulationName = factor(character(), levels = as.character(population_names)),
+      PopulationName = factor(
+        character(),
+        levels = as.character(population_names)
+      ),
       Annual = factor(character(), levels = all_years),
       Month = factor(integer(), levels = month_levels(year_start, 12L)),
       CaribouYear = integer(),

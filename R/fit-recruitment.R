@@ -130,9 +130,15 @@ bb_fit_recruitment <- function(
   fit$data <- data$data
   code_constants <- c(priors, sex_ratio = sex_ratio)
   if (!is.null(adult_female_proportion)) {
-    code_constants <- c(code_constants, adult_female_prop = adult_female_proportion)
+    code_constants <- c(
+      code_constants,
+      adult_female_prop = adult_female_proportion
+    )
   }
-  fit$model_code <- clean_model_code(substitute_prior_values(model$getCode(), code_constants))
+  fit$model_code <- clean_model_code(substitute_prior_values(
+    model$getCode(),
+    code_constants
+  ))
   class(fit) <- c("bboufit_recruitment", "bboufit")
   fit
 }

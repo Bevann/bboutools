@@ -23,7 +23,10 @@ save_png <- function(x, width = 400, height = 400) {
 
 save_csv <- function(x, digits = NULL) {
   if (!is.null(digits)) {
-    x <- dplyr::mutate(x, dplyr::across(dplyr::where(is.numeric), \(col) signif(col, digits)))
+    x <- dplyr::mutate(
+      x,
+      dplyr::across(dplyr::where(is.numeric), \(col) signif(col, digits))
+    )
   }
   path <- tempfile(fileext = ".csv")
   readr::write_csv(x, path)

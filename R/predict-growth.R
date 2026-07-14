@@ -50,8 +50,8 @@ predict_lambda <- function(survival, recruitment) {
     return(list(lambda = list(), data = data))
   }
 
-  sur <- sur[, , key_sur %in% key_rec, drop = FALSE]
-  rec <- rec[, , key_rec %in% key_sur, drop = FALSE]
+  sur <- sur[,, key_sur %in% key_rec, drop = FALSE]
+  rec <- rec[,, key_rec %in% key_sur, drop = FALSE]
   class(sur) <- "mcmcarray"
   class(rec) <- "mcmcarray"
 
@@ -76,7 +76,11 @@ predict_lambda <- function(survival, recruitment) {
 #' @references Hatter, Ian, and Wendy Bergerud. 1991. "Moose Recruitment, Adult
 #'   Mortality and Rate of Change" 27: 65–73.
 #' @family analysis
-bb_predict_growth_samples <- function(survival, recruitment, sex_ratio = deprecated()) {
+bb_predict_growth_samples <- function(
+  survival,
+  recruitment,
+  sex_ratio = deprecated()
+) {
   if (lifecycle::is_present(sex_ratio)) {
     lifecycle::deprecate_warn(
       "1.0.0",
@@ -271,7 +275,10 @@ bb_predict_population_change <- function(
   )
   coef$Month <- NULL
   start <- coef |>
-    dplyr::summarise(CaribouYear = min(.data$CaribouYear) - 1L, .by = "PopulationName") |>
+    dplyr::summarise(
+      CaribouYear = min(.data$CaribouYear) - 1L,
+      .by = "PopulationName"
+    ) |>
     dplyr::mutate(estimate = 1, lower = 1, upper = 1)
   coef <- rbind(start, coef)
   coef <- dplyr::arrange(coef, .data$PopulationName, .data$CaribouYear)
