@@ -57,6 +57,7 @@ VignetteBuilder:
 Remotes:
     LandSciTech/bbouNationalPriors,
     poissonconsulting/bboudata,
+    poissonconsulting/mcmcderive,
     poissonconsulting/newdata,
     poissonconsulting/rescale
 Config/testthat/edition: 3
